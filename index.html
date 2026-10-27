@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>A Little Sorry, Arpita 💗</title>
+  
+  <!-- Meta & Favicon -->
+  <meta name="description" content="A tiny interactive apology website made with love by Palash for Arpita 💗">
+  <meta name="theme-color" content="#FFE4E8">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  
+  <!-- Fonts with fallback to system fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Floating canvas for hearts and petals -->
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Sound & Quick Navigation Bar -->
+  <header class="top-nav-bar" role="banner">
+    <div class="nav-brand">
+      <span class="nav-heart" aria-hidden="true">💗</span>
+      <span class="nav-title">For Arpita</span>
+    </div>
+    <div class="nav-actions">
+      <button id="music-toggle" class="nav-pill-btn" aria-label="Toggle ambient music" aria-pressed="false" title="Click to play gentle music">
+        <span class="music-icon" aria-hidden="true">🎵</span>
+        <span class="music-label">Music: Off</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- ================= SCREEN 1: A LITTLE SURPRISE ================= -->
+    <section id="screen-surprise" class="screen-hero" aria-labelledby="hero-title">
+      <div class="hero-card">
+        <div class="sparkle-badge" aria-hidden="true">
+          <span>✨ Just for you ✨</span>
+        </div>
+
+        <!-- Animated Teddy Bear holding a heart -->
+        <div class="teddy-container" aria-label="An adorable illustrated teddy bear holding a heart">
+          <svg class="kawaii-teddy teddy-hero" viewBox="0 0 200 220" role="img" aria-hidden="true">
+            <defs>
+              <linearGradient id="teddyFurGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E5AD7E"/>
+                <stop offset="100%" stop-color="#CB8A58"/>
+              </linearGradient>
+              <linearGradient id="snoutGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#FFF2E7"/>
+                <stop offset="100%" stop-color="#FCE1CD"/>
+              </linearGradient>
+              <linearGradient id="heartGradHero" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FF5376"/>
+                <stop offset="100%" stop-color="#E60039"/>
+              </linearGradient>
+              <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+              </filter>
+            </defs>
+
+            <!-- Ears -->
+            <g class="teddy-ears">
+              <!-- Left Ear -->
+              <circle cx="58" cy="52" r="24" fill="url(#teddyFurGrad)" stroke="#B87340" stroke-width="2"/>
+              <circle cx="58" cy="52" r="14" fill="#FFAEC0" opacity="0.85"/>
+              <!-- Right Ear -->
+              <circle cx="142" cy="52" r="24" fill="url(#teddyFurGrad)" stroke="#B87340" stroke-width="2"/>
+              <circle cx="142" cy="52" r="14" fill="#FFAEC0" opacity="0.85"/>
+            </g>
+
+            <!-- Feet -->
+            <ellipse cx="65" cy="188" rx="20" ry="14" fill="url(#teddyFurGrad)" stroke="#B87340" stroke-width="2"/>
+            <ellipse cx="65" cy="188" rx="11" ry="8" fill="#FFAEC0" opacity="0.7"/>
+            <ellipse cx="135" cy="188" rx="20" ry="14" fill="url(#teddyFurGrad)" stroke="#B87340" stroke-width="2"/>
+            <ellipse cx="135" cy="188" rx="11" ry="8" fill="#FFAEC0" opacity="0.7"/>
+
+            <!-- Body -->
+            <ellipse cx="100" cy="142" rx="48" ry="46" fill="url(#teddyFurGrad)" stroke="#B87340" stroke-width="2"/>
+            <!-- Belly -->
+            <ellipse cx="100" cy="145" rx="30" ry="28" fill="url(#snoutGrad)" opacity="0.9"/>
+
+            <!-- Head -->
+            <g class="teddy-head-group">
+              <ellipse cx="100" cy="85" rx="46" ry="40" fill="url(#teddyFurGrad)" stroke="#B87340" stroke-width="2"/>
+
+              <!-- Snout -->
+              <ellipse cx="100" cy="94" rx="21" ry="16" fill="url(#snoutGrad)"/>
+              
+              <!-- Nose -->
+              <path d="M94 88 Q100 85 106 88 Q100 96 94 88 Z" fill="#4A2810"/>
+              <!-- Mouth -->
+              <path d="M96 96 Q100 101 104 96" fill="none" stroke="#4A2810" stroke-width="2" stroke-linecap="round"/>
+
+              <!-- Eyes -->
+              <g class="teddy-eyes">
+                <!-- Left Eye -->
+                <ellipse cx="80" cy="78" rx="5" ry="6" fill="#38200E"/>
+                <circle cx="78" cy="76" r="2" fill="#FFFFFF"/>
+                <circle cx="82" cy="80" r="1" fill="#FFFFFF"/>
+                <!-- Right Eye -->
+                <ellipse cx="120" cy="78" rx="5" ry="6" fill="#38200E"/>
+                <circle cx="118" cy="76" r="2" fill="#FFFFFF"/>
+                <circle cx="122" cy="80" r="1" fill="#FFFFFF"/>
+              </g>
+
+              <!-- Blushing Cheeks -->
+              <ellipse cx="68" cy="92" rx="8" ry="5" fill="#FF708F" opacity="0.55"/>
+              <ellipse cx="132" cy="92" rx="8" ry="5" fill="#FF708F" opacity="0.55"/>
+            </g>
+
+            <!-- Held Glowing Heart -->
+            <g class="teddy-heart-group">
+              <path d="M100 148 C85 125 60 135 60 152 C60 168 85 183 100 195 C115 183 140 168 140 152 C140 135 115 125 100 148 Z" 
+                    fill="url(#heartGradHero)" filter="url(#softGlow)"/>
+              <!-- Heart Highlight -->
+              <path d="M72 142 C72 136 78 132 85 133 C81 138 78 145 74 150 C72 147 72 144 72 142 Z" fill="#FFFFFF" opacity="0.6"/>
+              <!-- Sparkle Star on Heart -->
+              <path d="M122 145 L124 140 L126 145 L131 147 L126 149 L124 154 L122 149 L117 147 Z" fill="#FFFFFF" opacity="0.85"/>
+            </g>
+
+            <!-- Arms holding heart -->
+            <!-- Left Arm -->
+            <ellipse cx="68" cy="138" rx="12" ry="18" fill="url(#teddyFurGrad)" stroke="#B87340" stroke-width="1.8" transform="rotate(-25 68 138)"/>
+            <!-- Right Arm -->
+            <ellipse cx="132" cy="138" rx="12" ry="18" fill="url(#teddyFurGrad)" stroke="#B87340" stroke-width="1.8" transform="rotate(25 132 138)"/>
+          </svg>
+        </div>
+
+        <h1 id="hero-title" class="hero-heading">Hey, Arpita 💗</h1>
+        <p class="hero-subtext-1">I made a little something for you...</p>
+        <p class="hero-subtext-2">It's from someone who has been wanting to talk to you properly.</p>
+
+        <div class="hero-cta-wrapper">
+          <button id="open-surprise-btn" class="btn-primary-heart" aria-label="Open your little surprise and read Palash's letter">
+            <span class="btn-text">Open your little surprise 💌</span>
+            <span class="btn-ripple" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="scroll-hint" aria-hidden="true">
+          <span class="scroll-arrow">↓</span>
+          <span class="scroll-hint-text">or scroll gently</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SCREEN 2: THE HONEST EXPLANATION ================= -->
+    <section id="screen-letter" class="screen-section" aria-labelledby="letter-heading">
+      <div class="container">
+        
+        <div class="letter-wrapper">
+          <!-- Envelope Flap Animation Wrapper -->
+          <div class="envelope-header-decor" aria-hidden="true">
+            <div class="wax-seal">
+              <span>💌</span>
+            </div>
+            <div class="envelope-ribbon"></div>
+          </div>
+
+          <article class="letter-paper">
+            <header class="letter-header">
+              <h2 id="letter-heading" class="handwritten-title">Can I tell you what happened? 🥺</h2>
+              <div class="letter-stamp" aria-hidden="true">
+                <span class="stamp-inner">For Arpita<br>💗</span>
+              </div>
+            </header>
+
+            <div class="letter-body">
+              <p class="letter-greeting">Hey Arpita,</p>
+
+              <p>I know I haven't been able to talk to you properly for the last 4–5 days, and I'm really sorry about that.</p>
+
+              <p>I was travelling, and then I got really unwell with pneumonia and fever. Papa also came to stay with me while I was sick and help take care of me.</p>
+
+              <p>Everything was happening at once, and I wasn't able to call or text you properly or explain everything that was going on. I know I should have communicated with you better, and I'm sorry I couldn't tell you what was happening.</p>
+
+              <p>I wasn't intentionally ignoring you, Arpita. I really wish I had been able to explain everything to you instead of leaving you without proper communication.</p>
+
+              <p>I understand that not hearing from me for so many days might have hurt you, made you worry, or made you feel like I wasn't giving you importance. I'm genuinely sorry if my silence made you feel that way.</p>
+
+              <p>I'm telling you this because I want you to understand what happened, not because I want to invalidate how you feel. You have every right to tell me if you're upset.</p>
+
+              <p>I missed being able to talk to you properly, and I don't want you to feel like you have to guess what's happening with me.</p>
+
+              <p>I care about you so much, and I want to do better at communicating with you, even when things get difficult.</p>
+
+              <p>I'm sorry, Arpita. I wish I could explain all of this to you properly, listen to you, and make things right.</p>
+
+              <p class="letter-closing-line">Whenever you're ready, I'd really like to talk.</p>
+
+              <div class="letter-signature-area">
+                <div class="signature-text">
+                  <span class="sign-with-love">With love,</span>
+                  <span class="sign-name">Your Palash ❤️</span>
+                </div>
+                <div class="signature-heart-anim" aria-hidden="true">
+                  <svg class="pulsing-heart-icon" viewBox="0 0 32 32" width="28" height="28">
+                    <path d="M16 28 C8 20 2 15 2 9 C2 4 6 1 11 1 C14 1 15.5 3 16 4.5 C16.5 3 18 1 21 1 C26 1 30 4 30 9 C30 15 24 20 16 28 Z" fill="#E60039"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Subtle Paper Texture Overlay -->
+            <div class="paper-texture" aria-hidden="true"></div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SCREEN 3: A LITTLE TEDDY FOR YOU ================= -->
+    <section id="screen-teddy" class="screen-section" aria-labelledby="teddy-heading">
+      <div class="container text-center">
+        
+        <div class="section-card interactive-teddy-card">
+          <h2 id="teddy-heading" class="section-title">A Little Teddy For You 🧸</h2>
+          <p class="section-subtitle">He has been holding this little note just for you...</p>
+
+          <!-- Teddy holding note & waving -->
+          <div class="interactive-teddy-stage">
+            <svg class="kawaii-teddy teddy-waving" viewBox="0 0 240 240" role="img" aria-label="Cute teddy bear holding a note that says Palash is sorry Arpita">
+              <defs>
+                <linearGradient id="furGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#E5AD7E"/>
+                  <stop offset="100%" stop-color="#CB8A58"/>
+                </linearGradient>
+                <linearGradient id="noteGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#FFFDF8"/>
+                  <stop offset="100%" stop-color="#FFE8EF"/>
+                </linearGradient>
+                <filter id="shadowSmall" x="-10%" y="-10%" width="120%" height="120%">
+                  <feDropShadow dx="0" dy="4" stdDeviation="3" flood-color="rgba(100,50,50,0.15)"/>
+                </filter>
+              </defs>
+
+              <!-- Teddy Body Background Shadow -->
+              <ellipse cx="120" cy="225" rx="60" ry="10" fill="rgba(215, 120, 140, 0.2)"/>
+
+              <!-- Ears -->
+              <circle cx="75" cy="65" r="22" fill="url(#furGrad2)" stroke="#B87340" stroke-width="2"/>
+              <circle cx="75" cy="65" r="13" fill="#FFAEC0" opacity="0.85"/>
+              <circle cx="165" cy="65" r="22" fill="url(#furGrad2)" stroke="#B87340" stroke-width="2"/>
+              <circle cx="165" cy="65" r="13" fill="#FFAEC0" opacity="0.85"/>
+
+              <!-- Feet -->
+              <ellipse cx="85" cy="195" rx="20" ry="14" fill="url(#furGrad2)" stroke="#B87340" stroke-width="2"/>
+              <ellipse cx="85" cy="195" rx="10" ry="7" fill="#FFAEC0" opacity="0.75"/>
+              <ellipse cx="155" cy="195" rx="20" ry="14" fill="url(#furGrad2)" stroke="#B87340" stroke-width="2"/>
+              <ellipse cx="155" cy="195" rx="10" ry="7" fill="#FFAEC0" opacity="0.75"/>
+
+              <!-- Body -->
+              <ellipse cx="120" cy="155" rx="46" ry="44" fill="url(#furGrad2)" stroke="#B87340" stroke-width="2"/>
+
+              <!-- Left Arm (Waving Paw) -->
+              <g class="waving-arm-group">
+                <path d="M74 140 C60 130 45 110 50 95 C55 85 70 95 76 115 Z" fill="url(#furGrad2)" stroke="#B87340" stroke-width="2"/>
+                <circle cx="50" cy="93" r="12" fill="url(#furGrad2)" stroke="#B87340" stroke-width="2"/>
+                <circle cx="50" cy="93" r="7" fill="#FFAEC0" opacity="0.8"/>
+              </g>
+
+              <!-- Head -->
+              <g class="teddy-face-group">
+                <ellipse cx="120" cy="98" rx="44" ry="38" fill="url(#furGrad2)" stroke="#B87340" stroke-width="2"/>
+                <!-- Snout -->
+                <ellipse cx="120" cy="106" rx="20" ry="15" fill="#FFF2E7"/>
+                <!-- Nose -->
+                <path d="M114 100 Q120 97 126 100 Q120 108 114 100 Z" fill="#4A2810"/>
+                <!-- Smile -->
+                <path d="M116 108 Q120 113 124 108" fill="none" stroke="#4A2810" stroke-width="2" stroke-linecap="round"/>
+                <!-- Eyes (Curved happy/shy eyes) -->
+                <ellipse cx="101" cy="91" rx="5" ry="6" fill="#38200E"/>
+                <circle cx="99" cy="89" r="2" fill="#FFFFFF"/>
+                <ellipse cx="139" cy="91" rx="5" ry="6" fill="#38200E"/>
+                <circle cx="137" cy="89" r="2" fill="#FFFFFF"/>
+                <!-- Cheeks -->
+                <ellipse cx="89" cy="104" rx="8" ry="5" fill="#FF708F" opacity="0.55"/>
+                <ellipse cx="151" cy="104" rx="8" ry="5" fill="#FF708F" opacity="0.55"/>
+              </g>
+
+              <!-- Held Heart-Shaped Note -->
+              <g class="held-note-group" filter="url(#shadowSmall)">
+                <!-- Heart Note Graphic -->
+                <path d="M135 130 C120 115 100 120 100 135 C100 155 135 178 135 178 C135 178 170 155 170 135 C170 120 150 115 135 130 Z" 
+                      fill="url(#noteGrad)" stroke="#FFB6C1" stroke-width="2"/>
+                <!-- Note Ribbon/Badge -->
+                <circle cx="135" cy="132" r="4" fill="#FF5376"/>
+              </g>
+
+              <!-- Right Arm holding note -->
+              <path d="M162 145 C155 152 145 155 135 156" fill="none" stroke="url(#furGrad2)" stroke-width="14" stroke-linecap="round"/>
+            </svg>
+
+            <!-- Physical Note Label with exact text -->
+            <div class="physical-note-card">
+              <span class="note-pin" aria-hidden="true">📌</span>
+              <p class="note-quote">“Palash is sorry, Arpita 🥺💗”</p>
+            </div>
+          </div>
+
+          <!-- Virtual Hug Interaction Button -->
+          <div class="hug-action-area">
+            <button id="hug-btn" class="btn-primary-teddy" aria-label="Give me a virtual hug">
+              <span class="btn-icon" aria-hidden="true">🧸</span>
+              <span class="btn-text">Give me a virtual hug 🧸</span>
+            </button>
+
+            <!-- Virtual Hug Success Message Box -->
+            <div id="hug-response-box" class="hug-message-box hidden" role="status" aria-live="polite">
+              <div class="hug-icon-burst" aria-hidden="true">🫂💗✨</div>
+              <p class="hug-message-text">Sending you the biggest virtual hug, Arpita. I hope you're doing okay. ❤️</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SCREEN 4: A SINCERE APOLOGY ================= -->
+    <section id="screen-apology" class="screen-section" aria-labelledby="apology-heading">
+      <div class="container">
+        
+        <div class="apology-card-wrapper">
+          <div class="card-glow-backdrop" aria-hidden="true"></div>
+
+          <article class="apology-card">
+            <div class="apology-icon-header" aria-hidden="true">
+              <!-- Beautiful Floating Heart Illustration -->
+              <svg class="heart-pulse-svg" viewBox="0 0 80 80" width="70" height="70">
+                <defs>
+                  <linearGradient id="apologyHeartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FF6584"/>
+                    <stop offset="100%" stop-color="#E60039"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="40" cy="40" r="38" fill="#FFF0F3" stroke="#FFCCD5" stroke-width="2"/>
+                <path d="M40 58 C24 45 15 34 15 24 C15 17 20 12 27 12 C32 12 37 15 40 19 C43 15 48 12 53 12 C60 12 65 17 65 24 C65 34 56 45 40 58 Z" 
+                      fill="url(#apologyHeartGrad)"/>
+                <circle cx="28" cy="21" r="3" fill="#FFFFFF" opacity="0.7"/>
+              </svg>
+            </div>
+
+            <h2 id="apology-heading" class="apology-title">I'm sorry, my love 💗</h2>
+
+            <div class="apology-content">
+              <p>I know that explaining what happened doesn't erase the fact that I couldn't be there to talk to you properly.</p>
+
+              <p>I should have communicated better, and I want to learn from this.</p>
+
+              <p class="highlight-promise">You matter to me, Arpita. Your feelings matter, too.</p>
+
+              <p>I'm not asking you to forget that you were upset. I just want the chance to listen, explain things properly, and understand how you felt.</p>
+
+              <p>I want us to be able to talk honestly, even when life gets messy.</p>
+
+              <p class="apology-final-line">I'm really sorry. ❤️</p>
+            </div>
+
+            <div class="sparkle-row" aria-hidden="true">
+              <span>🌸</span>
+              <span>✦</span>
+              <span>🤍</span>
+              <span>✦</span>
+              <span>🌸</span>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SCREEN 5: LET HER CHOOSE ================= -->
+    <section id="screen-choice" class="screen-section" aria-labelledby="choice-heading">
+      <div class="container text-center">
+        
+        <div class="choice-container">
+          <div class="choice-header">
+            <h2 id="choice-heading" class="choice-title">Can we talk when you're ready, Arpita? 🥺</h2>
+            <p class="choice-support-text">
+              I know I can't make up for those days with a website. I just wanted to put some effort into telling you how sorry I am.
+            </p>
+          </div>
+
+          <!-- Three Separate Interactive Buttons -->
+          <div class="choice-button-grid" role="group" aria-label="Apology response options">
+            <!-- Button A -->
+            <button id="choice-btn-a" class="choice-pill-btn choice-a" aria-expanded="false" aria-controls="response-panel-a">
+              <span class="choice-btn-icon" aria-hidden="true">💗</span>
+              <span class="choice-btn-text">Okay, let's talk 💗</span>
+            </button>
+
+            <!-- Button B -->
+            <button id="choice-btn-b" class="choice-pill-btn choice-b" aria-expanded="false" aria-controls="response-panel-b">
+              <span class="choice-btn-icon" aria-hidden="true">🫂</span>
+              <span class="choice-btn-text">Send me a hug 🫂</span>
+            </button>
+
+            <!-- Button C -->
+            <button id="choice-btn-c" class="choice-pill-btn choice-c" aria-expanded="false" aria-controls="response-panel-c">
+              <span class="choice-btn-icon" aria-hidden="true">🌷</span>
+              <span class="choice-btn-text">I need some time 🌷</span>
+            </button>
+          </div>
+
+          <!-- Dynamic Response Panels (Work independently, locally in browser) -->
+          <div class="response-display-zone">
+
+            <!-- Panel A: Okay, let's talk -->
+            <div id="response-panel-a" class="response-card hidden" role="region" aria-live="polite">
+              <div class="response-teddy-art">
+                <!-- Happy listening teddy with heart -->
+                <svg class="kawaii-teddy teddy-choice-art" viewBox="0 0 160 160" width="130" height="130" aria-hidden="true">
+                  <!-- Ears -->
+                  <circle cx="50" cy="40" r="18" fill="#CB8A58"/>
+                  <circle cx="50" cy="40" r="10" fill="#FFAEC0"/>
+                  <circle cx="110" cy="40" r="18" fill="#CB8A58"/>
+                  <circle cx="110" cy="40" r="10" fill="#FFAEC0"/>
+                  <!-- Body -->
+                  <ellipse cx="80" cy="115" rx="35" ry="32" fill="#CB8A58"/>
+                  <!-- Head -->
+                  <ellipse cx="80" cy="70" rx="36" ry="30" fill="#E5AD7E"/>
+                  <!-- Snout -->
+                  <ellipse cx="80" cy="76" rx="16" ry="12" fill="#FFF2E7"/>
+                  <path d="M75 72 Q80 70 85 72 Q80 78 75 72 Z" fill="#4A2810"/>
+                  <path d="M77 78 Q80 83 83 78" fill="none" stroke="#4A2810" stroke-width="2" stroke-linecap="round"/>
+                  <!-- Happy curved eyes -->
+                  <path d="M63 67 Q68 62 73 67" fill="none" stroke="#38200E" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M87 67 Q92 62 97 67" fill="none" stroke="#38200E" stroke-width="2.5" stroke-linecap="round"/>
+                  <!-- Rosy Cheeks -->
+                  <ellipse cx="58" cy="76" rx="6" ry="4" fill="#FF708F" opacity="0.65"/>
+                  <ellipse cx="102" cy="76" rx="6" ry="4" fill="#FF708F" opacity="0.65"/>
+                  <!-- Big Heart in hands -->
+                  <path d="M80 115 C68 98 48 105 48 118 C48 132 68 143 80 152 C92 143 112 132 112 118 C112 105 92 98 80 115 Z" fill="#FF3366"/>
+                  <circle cx="58" cy="112" r="2" fill="#FFF" opacity="0.8"/>
+                </svg>
+              </div>
+              <p class="response-quote">“Thank you, Arpita. I'm here, and I really want to listen. ❤️”</p>
+              <div class="response-note-subtext">Whenever you feel comfortable to text or call, I am ready to hear you completely.</div>
+            </div>
+
+            <!-- Panel B: Send me a hug -->
+            <div id="response-panel-b" class="response-card hidden" role="region" aria-live="polite">
+              <div class="response-teddy-art">
+                <!-- Teddy warm hug -->
+                <svg class="kawaii-teddy teddy-choice-art" viewBox="0 0 160 160" width="130" height="130" aria-hidden="true">
+                  <!-- Hugging heart teddy -->
+                  <circle cx="45" cy="42" r="16" fill="#CB8A58"/>
+                  <circle cx="45" cy="42" r="9" fill="#FFAEC0"/>
+                  <circle cx="115" cy="42" r="16" fill="#CB8A58"/>
+                  <circle cx="115" cy="42" r="9" fill="#FFAEC0"/>
+                  <ellipse cx="80" cy="115" rx="38" ry="32" fill="#CB8A58"/>
+                  <ellipse cx="80" cy="72" rx="36" ry="30" fill="#E5AD7E"/>
+                  <ellipse cx="80" cy="78" rx="16" ry="12" fill="#FFF2E7"/>
+                  <path d="M76 74 Q80 72 84 74 Q80 80 76 74 Z" fill="#4A2810"/>
+                  <path d="M78 80 Q80 84 82 80" fill="none" stroke="#4A2810" stroke-width="2"/>
+                  <!-- Peaceful closed sleepy eyes -->
+                  <path d="M62 70 Q67 74 72 70" fill="none" stroke="#38200E" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M88 70 Q93 74 98 70" fill="none" stroke="#38200E" stroke-width="2.5" stroke-linecap="round"/>
+                  <ellipse cx="58" cy="78" rx="7" ry="4" fill="#FF708F" opacity="0.7"/>
+                  <ellipse cx="102" cy="78" rx="7" ry="4" fill="#FF708F" opacity="0.7"/>
+                  <!-- Arms wrapped around big squishy plush heart -->
+                  <path d="M80 108 C65 92 42 100 42 116 C42 132 65 145 80 155 C95 145 118 132 118 116 C118 100 95 92 80 108 Z" fill="#FF5376"/>
+                  <!-- Teddy paws clasping the heart -->
+                  <ellipse cx="52" cy="118" rx="8" ry="11" fill="#E5AD7E" transform="rotate(-30 52 118)"/>
+                  <ellipse cx="108" cy="118" rx="8" ry="11" fill="#E5AD7E" transform="rotate(30 108 118)"/>
+                </svg>
+              </div>
+              <p class="response-quote">“One very big virtual hug, just for you. 💗”</p>
+              <div class="response-note-subtext">Wrapping you in warmth, care, and softness. You are never alone.</div>
+            </div>
+
+            <!-- Panel C: I need some time -->
+            <div id="response-panel-c" class="response-card hidden" role="region" aria-live="polite">
+              <div class="response-teddy-art">
+                <!-- Calm respectful teddy holding gentle tulip -->
+                <svg class="kawaii-teddy teddy-choice-art" viewBox="0 0 160 160" width="130" height="130" aria-hidden="true">
+                  <!-- Ears -->
+                  <circle cx="50" cy="42" r="16" fill="#CB8A58"/>
+                  <circle cx="50" cy="42" r="9" fill="#FFAEC0"/>
+                  <circle cx="110" cy="42" r="16" fill="#CB8A58"/>
+                  <circle cx="110" cy="42" r="9" fill="#FFAEC0"/>
+                  <ellipse cx="80" cy="118" rx="36" ry="30" fill="#CB8A58"/>
+                  <ellipse cx="80" cy="74" rx="35" ry="29" fill="#E5AD7E"/>
+                  <ellipse cx="80" cy="80" rx="15" ry="11" fill="#FFF2E7"/>
+                  <path d="M76 76 Q80 74 84 76 Q80 81 76 76 Z" fill="#4A2810"/>
+                  <path d="M77 82 Q80 85 83 82" fill="none" stroke="#4A2810" stroke-width="2"/>
+                  <!-- Gentle kind eyes -->
+                  <circle cx="68" cy="72" r="3.5" fill="#38200E"/>
+                  <circle cx="67" cy="71" r="1" fill="#FFF"/>
+                  <circle cx="92" cy="72" r="3.5" fill="#38200E"/>
+                  <circle cx="91" cy="71" r="1" fill="#FFF"/>
+                  <ellipse cx="60" cy="80" rx="6" ry="3.5" fill="#FF708F" opacity="0.5"/>
+                  <ellipse cx="100" cy="80" rx="6" ry="3.5" fill="#FF708F" opacity="0.5"/>
+                  <!-- Pink Tulip Flower held gently -->
+                  <!-- Tulip Stem -->
+                  <path d="M85 140 Q88 120 85 105" fill="none" stroke="#70A060" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M86 122 Q94 118 96 112" fill="none" stroke="#70A060" stroke-width="2.5" stroke-linecap="round"/>
+                  <!-- Tulip Bloom -->
+                  <path d="M85 105 C75 92 78 80 85 78 C92 80 95 92 85 105 Z" fill="#FF85A2"/>
+                  <path d="M81 102 C72 90 74 82 80 81 C82 86 83 95 81 102 Z" fill="#FFAEC0"/>
+                  <path d="M89 102 C98 90 96 82 90 81 C88 86 87 95 89 102 Z" fill="#FF6584"/>
+                </svg>
+              </div>
+              <p class="response-quote">“That's okay, Arpita. Take the time you need. I respect how you feel, and I'll be here when you're ready. ❤️”</p>
+              <div class="response-note-subtext">No rush, no expectations. Take all the time and space you need.</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SCREEN 6: FINAL SCREEN - MADE WITH LOVE ================= -->
+    <section id="screen-closing" class="screen-section screen-closing-section" aria-labelledby="closing-heading">
+      <div class="container text-center">
+        
+        <div class="closing-card">
+          <div class="closing-header-icon" aria-hidden="true">
+            <span class="closing-envelope">💌</span>
+          </div>
+
+          <h2 id="closing-heading" class="closing-title">One last little thing... 💌</h2>
+
+          <div class="closing-body">
+            <p>Arpita, I'm sorry these last few days turned out this way.</p>
+            <p>I wish I could have communicated everything to you properly, and I hope we can talk about it when you're ready.</p>
+            <p class="closing-highlight">Thank you for being you. You mean a lot to me, and I want my actions to show you that.</p>
+            <p class="closing-care">Take care of yourself, okay? ❤️</p>
+          </div>
+
+          <!-- Little Closing Teddy Bear with Hearts -->
+          <div class="closing-teddy-wrapper" aria-hidden="true">
+            <svg class="kawaii-teddy teddy-closing" viewBox="0 0 140 140" width="110" height="110">
+              <circle cx="45" cy="40" r="14" fill="#CB8A58"/>
+              <circle cx="45" cy="40" r="8" fill="#FFAEC0"/>
+              <circle cx="95" cy="40" r="14" fill="#CB8A58"/>
+              <circle cx="95" cy="40" r="8" fill="#FFAEC0"/>
+              <ellipse cx="70" cy="100" rx="30" ry="26" fill="#CB8A58"/>
+              <ellipse cx="70" cy="65" rx="30" ry="25" fill="#E5AD7E"/>
+              <ellipse cx="70" cy="71" rx="14" ry="10" fill="#FFF2E7"/>
+              <path d="M66 68 Q70 66 74 68 Q70 73 66 68 Z" fill="#4A2810"/>
+              <path d="M68 73 Q70 76 72 73" fill="none" stroke="#4A2810" stroke-width="1.8"/>
+              <circle cx="60" cy="64" r="3" fill="#38200E"/>
+              <circle cx="59" cy="63" r="1" fill="#FFF"/>
+              <circle cx="80" cy="64" r="3" fill="#38200E"/>
+              <circle cx="79" cy="63" r="1" fill="#FFF"/>
+              <ellipse cx="52" cy="71" rx="5" ry="3" fill="#FF708F" opacity="0.6"/>
+              <ellipse cx="88" cy="71" rx="5" ry="3" fill="#FF708F" opacity="0.6"/>
+              <!-- Heart between paws -->
+              <path d="M70 95 C62 85 48 90 48 100 C48 110 62 118 70 124 C78 118 92 110 92 100 C92 90 78 85 70 95 Z" fill="#FF477E"/>
+            </svg>
+          </div>
+
+          <div class="closing-signature">
+            <p class="closing-sign-line">With love,</p>
+            <p class="closing-sign-name">Palash 💗</p>
+          </div>
+
+          <div class="closing-divider" aria-hidden="true"></div>
+
+          <footer class="site-footer">
+            <p class="footer-dedication">Made with a little courage, a lot of heart, and love for Arpita.</p>
+          </footer>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

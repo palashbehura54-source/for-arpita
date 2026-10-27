@@ -1,0 +1,1069 @@
+/* ==========================================================================
+   A LITTLE SORRY, ARPITA 💗 — STYLESHEET
+   Design System, Romantic Aesthetics, Typography & Micro-interactions
+   ========================================================================== */
+
+/* --- Custom Properties / Design Tokens --- */
+:root {
+  /* Color Palette */
+  --bg-primary: #FFF5F7;
+  --bg-gradient-top: #FFEBF0;
+  --bg-gradient-bottom: #FFF8FA;
+  --card-bg: #FFFFFF;
+  --paper-cream: #FFFDF9;
+  --paper-border: #F3D5DB;
+  --paper-line: rgba(230, 150, 165, 0.15);
+  
+  --color-primary: #FF5E7E;
+  --color-primary-dark: #E60039;
+  --color-primary-light: #FF8FA3;
+  --color-blush: #FFCCD5;
+  --color-blush-soft: #FFE5EC;
+  --color-lavender: #EADCF8;
+  --color-lavender-light: #F6EFFE;
+  --color-tulip-green: #588157;
+  
+  --text-main: #3E2F32;
+  --text-muted: #6B5B5E;
+  --text-soft: #8D7B7E;
+  
+  /* Shadows & Glows */
+  --shadow-soft: 0 8px 30px rgba(235, 110, 135, 0.08);
+  --shadow-card: 0 16px 45px rgba(220, 90, 120, 0.12);
+  --shadow-float: 0 20px 50px rgba(225, 80, 115, 0.18);
+  --glow-heart: 0 0 24px rgba(255, 94, 126, 0.35);
+  
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-handwritten: 'Caveat', 'Sacramento', cursive;
+  
+  /* Layout & Radii */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 32px;
+  --radius-pill: 9999px;
+  --container-max: 760px;
+  --container-narrow: 640px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.2, 0, 0, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-gentle: 0.5s ease-out;
+}
+
+/* --- Global Reset & Base Styles --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, var(--bg-gradient-top) 0%, var(--bg-primary) 30%, #FFF0F4 70%, var(--bg-gradient-bottom) 100%);
+  color: var(--text-main);
+  line-height: 1.7;
+  font-size: 1.05rem;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Background Canvas for Floating Hearts/Petals */
+#ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Accessible Skip Link / Focus Outlines */
+:focus-visible {
+  outline: 3px solid var(--color-primary-light);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Common Container */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  position: relative;
+  z-index: 2;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* --- Top Navigation Bar --- */
+.top-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: rgba(255, 245, 247, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 204, 213, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(240, 100, 130, 0.05);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+}
+
+.nav-heart {
+  display: inline-block;
+  animation: heartPulse 2.5s infinite ease-in-out;
+}
+
+.nav-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #FFFFFF;
+  border: 1px solid var(--color-blush);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(220, 80, 110, 0.06);
+}
+
+.nav-pill-btn:hover {
+  background: var(--color-blush-soft);
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary-light);
+  transform: translateY(-1px);
+}
+
+.nav-pill-btn[aria-pressed="true"] {
+  background: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(255, 94, 126, 0.3);
+}
+
+.nav-pill-btn[aria-pressed="true"] .music-icon {
+  animation: musicBounce 1.2s infinite ease-in-out;
+}
+
+/* --- Section Layouts --- */
+.screen-hero {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1.25rem 3rem 1.25rem;
+  position: relative;
+  z-index: 2;
+}
+
+.screen-section {
+  padding: 5rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= SCREEN 1: HERO / SURPRISE ================= */
+.hero-card {
+  width: 100%;
+  max-width: 580px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 215, 225, 0.8);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2rem 2.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  animation: heroCardFloat 5s ease-in-out infinite alternate;
+}
+
+.sparkle-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #FFE5EC, #FFF0F5);
+  border: 1px solid #FFCCD5;
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 1.1rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.03em;
+}
+
+.teddy-container {
+  width: 180px;
+  height: 198px;
+  margin: 0 auto 1.5rem auto;
+  position: relative;
+}
+
+.teddy-hero {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 10px 18px rgba(180, 80, 100, 0.15));
+}
+
+.teddy-head-group {
+  transform-origin: 100px 100px;
+  animation: headBob 3.5s ease-in-out infinite alternate;
+}
+
+.teddy-heart-group {
+  transform-origin: 100px 160px;
+  animation: heartThrob 2s ease-in-out infinite;
+}
+
+.hero-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5.5vw, 2.75rem);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.85rem;
+  line-height: 1.2;
+}
+
+.hero-subtext-1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtext-2 {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 440px;
+  margin: 0 auto 2.2rem auto;
+  line-height: 1.6;
+}
+
+/* Primary Heart CTA Button */
+.btn-primary-heart {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #FF6584 0%, #E60039 100%);
+  color: #FFFFFF;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 800;
+  padding: 1.1rem 2.4rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(230, 0, 57, 0.35);
+  transition: all var(--transition-smooth);
+  overflow: hidden;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.btn-primary-heart:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 34px rgba(230, 0, 57, 0.45);
+}
+
+.btn-primary-heart:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.scroll-hint {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--text-soft);
+  font-size: 0.85rem;
+}
+
+.scroll-arrow {
+  display: inline-block;
+  font-size: 1.2rem;
+  animation: bounceDown 2s infinite;
+  color: var(--color-primary);
+}
+
+/* ================= SCREEN 2: THE HONEST EXPLANATION (LETTER) ================= */
+.letter-wrapper {
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+  position: relative;
+}
+
+.envelope-header-decor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: -1.75rem;
+  z-index: 3;
+}
+
+.wax-seal {
+  width: 58px;
+  height: 58px;
+  background: radial-gradient(circle at 35% 35%, #FF5376, #BA0B30);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: #FFFFFF;
+  box-shadow: 0 6px 18px rgba(186, 11, 48, 0.35), inset 0 2px 3px rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  animation: sealGlow 3s infinite alternate;
+}
+
+.envelope-ribbon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-blush), var(--color-primary-light), var(--color-blush), transparent);
+  z-index: -1;
+}
+
+.letter-paper {
+  background: var(--paper-cream);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 31px,
+    var(--paper-line) 31px,
+    var(--paper-line) 32px
+  );
+  border: 1px solid var(--paper-border);
+  border-radius: var(--radius-md);
+  padding: 3.5rem 2.5rem 3rem 2.5rem;
+  box-shadow: var(--shadow-card), inset 0 0 40px rgba(240, 210, 215, 0.25);
+  position: relative;
+  overflow: hidden;
+  line-height: 1.85;
+}
+
+/* Fold effect at bottom corner */
+.letter-paper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 35px 35px;
+  border-color: transparent transparent #FFE5EC transparent;
+  box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.letter-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  border-bottom: 1px dashed var(--color-blush);
+  padding-bottom: 1.25rem;
+}
+
+.handwritten-title {
+  font-family: var(--font-handwritten);
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1.15;
+}
+
+.letter-stamp {
+  border: 2px dashed var(--color-primary-light);
+  border-radius: 6px;
+  padding: 0.35rem 0.65rem;
+  background: #FFF5F7;
+  text-align: center;
+  transform: rotate(4deg);
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.stamp-inner {
+  font-family: var(--font-serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.2;
+  display: block;
+}
+
+.letter-body p {
+  margin-bottom: 1.45rem;
+  color: var(--text-main);
+  font-size: 1.05rem;
+}
+
+.letter-greeting {
+  font-size: 1.25rem !important;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+}
+
+.letter-closing-line {
+  font-weight: 700;
+  color: var(--text-main);
+  margin-top: 1.5rem !important;
+}
+
+.letter-signature-area {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.signature-text {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.sign-with-love {
+  font-family: var(--font-handwritten);
+  font-size: 1.4rem;
+  color: var(--text-muted);
+}
+
+.sign-name {
+  font-family: var(--font-handwritten);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1;
+}
+
+.signature-heart-anim {
+  animation: heartPulse 1.8s infinite ease-in-out;
+}
+
+/* ================= SCREEN 3: A LITTLE TEDDY FOR YOU ================= */
+.interactive-teddy-card {
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+  background: #FFFFFF;
+  border: 1px solid rgba(255, 200, 215, 0.7);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+.interactive-teddy-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.teddy-waving {
+  width: 220px;
+  height: 220px;
+  overflow: visible;
+}
+
+/* Continuous paw wave animation */
+.waving-arm-group {
+  transform-origin: 70px 120px;
+  animation: wavePaw 1.8s ease-in-out infinite;
+}
+
+.physical-note-card {
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #FFFDF8, #FFF0F5);
+  border: 2px dashed #FFCCD5;
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1.6rem;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(240, 100, 120, 0.08);
+  transform: rotate(-1.5deg);
+}
+
+.note-pin {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.1rem;
+}
+
+.note-quote {
+  font-family: var(--font-handwritten);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1.2;
+}
+
+/* Button & Hug response */
+.hug-action-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.btn-primary-teddy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, #FF758F 0%, #FF4D6D 100%);
+  color: #FFFFFF;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 800;
+  padding: 1rem 2.2rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(255, 77, 109, 0.3);
+  transition: all var(--transition-smooth);
+  touch-action: manipulation;
+}
+
+.btn-primary-teddy:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(255, 77, 109, 0.4);
+}
+
+.btn-primary-teddy:active {
+  transform: translateY(1px);
+}
+
+.hug-message-box {
+  background: linear-gradient(135deg, #FFF0F5, #FFE5EC);
+  border: 1.5px solid #FFB6C1;
+  border-radius: var(--radius-md);
+  padding: 1.4rem 1.8rem;
+  max-width: 480px;
+  box-shadow: 0 8px 24px rgba(240, 100, 130, 0.12);
+  animation: slideFadeUp 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.hug-message-box.hidden {
+  display: none;
+}
+
+.hug-icon-burst {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+  animation: heartThrob 1.5s infinite;
+}
+
+.hug-message-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1.5;
+}
+
+/* ================= SCREEN 4: A SINCERE APOLOGY ================= */
+.apology-card-wrapper {
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+  position: relative;
+}
+
+.card-glow-backdrop {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: radial-gradient(circle, rgba(255, 143, 163, 0.25) 0%, rgba(255, 235, 240, 0) 70%);
+  border-radius: calc(var(--radius-lg) + 10px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.apology-card {
+  position: relative;
+  z-index: 2;
+  background: #FFFFFF;
+  border: 1px solid rgba(255, 204, 213, 0.8);
+  border-radius: var(--radius-lg);
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-float);
+}
+
+.apology-icon-header {
+  margin-bottom: 1.5rem;
+}
+
+.heart-pulse-svg {
+  animation: heartPulse 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 6px 14px rgba(230, 0, 57, 0.25));
+}
+
+.apology-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 1.75rem;
+}
+
+.apology-content p {
+  margin-bottom: 1.35rem;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  line-height: 1.75;
+}
+
+.highlight-promise {
+  font-weight: 800;
+  font-size: 1.2rem !important;
+  color: var(--color-primary-dark) !important;
+  background: #FFF0F3;
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-blush);
+}
+
+.apology-final-line {
+  font-size: 1.25rem !important;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  margin-top: 1.5rem;
+}
+
+.sparkle-row {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--color-primary-light);
+  font-size: 1.1rem;
+}
+
+/* ================= SCREEN 5: LET HER CHOOSE ================= */
+.choice-container {
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+  background: #FFFFFF;
+  border: 1px solid rgba(255, 200, 215, 0.7);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.choice-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4.5vw, 2.35rem);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.75rem;
+}
+
+.choice-support-text {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 480px;
+  margin: 0 auto 2.5rem auto;
+  line-height: 1.6;
+}
+
+.choice-button-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 580px) {
+  .choice-button-grid {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.choice-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 1rem 1.4rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  touch-action: manipulation;
+  background: #FFFFFF;
+  border: 2px solid;
+}
+
+/* Button A styling */
+.choice-pill-btn.choice-a {
+  border-color: #FF758F;
+  color: #C9184A;
+}
+.choice-pill-btn.choice-a:hover,
+.choice-pill-btn.choice-a[aria-expanded="true"] {
+  background: linear-gradient(135deg, #FF758F, #E60039);
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: 0 8px 22px rgba(230, 0, 57, 0.28);
+}
+
+/* Button B styling */
+.choice-pill-btn.choice-b {
+  border-color: #FFAEC0;
+  color: #A4133C;
+}
+.choice-pill-btn.choice-b:hover,
+.choice-pill-btn.choice-b[aria-expanded="true"] {
+  background: linear-gradient(135deg, #FFAEC0, #FF5376);
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: 0 8px 22px rgba(255, 83, 118, 0.28);
+}
+
+/* Button C styling (Always respected, gentle, welcoming) */
+.choice-pill-btn.choice-c {
+  border-color: #D8B4E2;
+  color: #6A3E8A;
+}
+.choice-pill-btn.choice-c:hover,
+.choice-pill-btn.choice-c[aria-expanded="true"] {
+  background: linear-gradient(135deg, #E2C3EC, #9F62C0);
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: 0 8px 22px rgba(159, 98, 192, 0.25);
+}
+
+.choice-pill-btn:hover {
+  transform: translateY(-2px);
+}
+
+.choice-pill-btn:active {
+  transform: translateY(1px);
+}
+
+/* Response Cards */
+.response-display-zone {
+  min-height: 120px;
+}
+
+.response-card {
+  background: linear-gradient(135deg, #FFF7F9 0%, #FFF0F4 100%);
+  border: 1.5px solid var(--color-blush);
+  border-radius: var(--radius-md);
+  padding: 2rem 1.75rem;
+  box-shadow: var(--shadow-soft);
+  animation: slideFadeUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.response-card.hidden {
+  display: none;
+}
+
+.response-teddy-art {
+  margin-bottom: 1.25rem;
+}
+
+.teddy-choice-art {
+  filter: drop-shadow(0 6px 14px rgba(180, 80, 100, 0.15));
+}
+
+.response-quote {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.65rem;
+  line-height: 1.4;
+}
+
+.response-note-subtext {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+}
+
+/* ================= SCREEN 6: FINAL SCREEN - MADE WITH LOVE ================= */
+.screen-closing-section {
+  padding-bottom: 6rem;
+}
+
+.closing-card {
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 204, 213, 0.85);
+  border-radius: var(--radius-lg);
+  padding: 3.5rem 2.5rem 2.5rem 2.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.closing-header-icon {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+}
+
+.closing-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  margin-bottom: 1.75rem;
+}
+
+.closing-body p {
+  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  line-height: 1.75;
+}
+
+.closing-highlight {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.closing-care {
+  font-size: 1.25rem !important;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  margin-top: 1.5rem !important;
+}
+
+.closing-teddy-wrapper {
+  margin: 2rem auto 1.5rem auto;
+}
+
+.teddy-closing {
+  filter: drop-shadow(0 6px 14px rgba(220, 80, 110, 0.15));
+  animation: gentleBreathe 3s ease-in-out infinite alternate;
+}
+
+.closing-signature {
+  margin-top: 1.5rem;
+}
+
+.closing-sign-line {
+  font-family: var(--font-handwritten);
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.closing-sign-name {
+  font-family: var(--font-handwritten);
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  line-height: 1.1;
+  margin-top: 0.25rem;
+}
+
+.closing-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-blush), transparent);
+  margin: 2.5rem auto 1.5rem auto;
+  max-width: 320px;
+}
+
+.site-footer {
+  margin-top: 1rem;
+}
+
+.footer-dedication {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  letter-spacing: 0.02em;
+}
+
+/* ================= KEYFRAME ANIMATIONS ================= */
+@keyframes heartPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes heartThrob {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.08); }
+  40% { transform: scale(0.96); }
+  60% { transform: scale(1.04); }
+}
+
+@keyframes heroCardFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+@keyframes headBob {
+  0% { transform: rotate(-2deg); }
+  100% { transform: rotate(3deg); }
+}
+
+@keyframes wavePaw {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-22deg); }
+  50% { transform: rotate(10deg); }
+  75% { transform: rotate(-18deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes gentleBreathe {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.03); }
+}
+
+@keyframes bounceDown {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(6px); }
+  60% { transform: translateY(3px); }
+}
+
+@keyframes musicBounce {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.15) rotate(-10deg); }
+  75% { transform: scale(1.15) rotate(10deg); }
+}
+
+@keyframes sealGlow {
+  0% { box-shadow: 0 6px 18px rgba(186, 11, 48, 0.35); }
+  100% { box-shadow: 0 8px 24px rgba(255, 83, 118, 0.5); }
+}
+
+@keyframes slideFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= ACCESSIBILITY: PREFERS REDUCED MOTION ================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hero-card,
+  .teddy-head-group,
+  .teddy-heart-group,
+  .waving-arm-group,
+  .teddy-closing,
+  .nav-heart,
+  .wax-seal,
+  .heart-pulse-svg,
+  .scroll-arrow {
+    animation: none !important;
+  }
+}
+
+/* ================= RESPONSIVE ADJUSTMENTS ================= */
+@media (max-width: 600px) {
+  body {
+    font-size: 1rem;
+  }
+
+  .screen-hero {
+    padding-top: 4.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .screen-section {
+    padding: 3.5rem 0;
+  }
+
+  .hero-card {
+    padding: 2.2rem 1.4rem 1.8rem 1.4rem;
+  }
+
+  .letter-paper {
+    padding: 2.5rem 1.35rem 2rem 1.35rem;
+  }
+
+  .apology-card,
+  .interactive-teddy-card,
+  .choice-container,
+  .closing-card {
+    padding: 2.4rem 1.35rem;
+  }
+
+  .choice-pill-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-primary-heart,
+  .btn-primary-teddy {
+    width: 100%;
+    padding: 1rem 1.5rem;
+  }
+}
